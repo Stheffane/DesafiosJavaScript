@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Desafio #3 - Convertendo números para romanos</title>
+</head>
+<body>
+    
+    <script>
+    var N = prompt("Qual número deseja convertar para Algarismos Romanos? ");
+
+    //alert(converter_para_romano(N));
+
+    var uni = N % 10; 
+    N -= uni;
+    var dec = N % 100;
+    N -= dec;
+    var cen = N % 1000;
+    N -= cen;
+    var mil = N % 10000;
+    N -= mil;
+    
+    var algRom = '';    
+    
+    if (mil < 4000){
+        while( mil != 0) { algRom += 'M'; mil-=1000; }
+
+        if (cen > 0){
+            if (cen < 400){
+                cen /= 100;
+                algRom += 'C'.repeat(cen);
+            }
+
+            if (cen == 400) {
+            algRom += 'CD';
+            } else if (cen == 500) {
+                algRom += 'D';
+            } else if ( cen > 500 && cen <= 800){
+                algRom += 'D';
+                while ( !(cen <= 500) ){ algRom += 'C'; cen-=100; }
+            } else if ( cen == 900) algRom += 'CM';
+        }
+
+        if (dec > 0){
+            if (dec < 40){
+                dec /= 10;
+                algRom += 'X'.repeat(dec);
+            }
+
+            if (dec == 40) {
+            algRom += 'XL';
+            } else if (dec == 50) {
+                algRom += 'L';
+            } else if ( dec > 50 && dec <= 80 ){
+                algRom += 'L';
+                while ( !(dec <= 50) ){ algRom += 'X'; dec-=10; }
+            } else if ( dec == 90) algRom += 'XC';
+        }
+
+        if (uni > 0){
+            if (uni < 4){ algRom += 'I'.repeat(uni); }
+
+            if (uni == 4) {
+               algRom += 'IV';
+            } else if (uni == 5) {
+                algRom += 'V';
+            } else if ( uni > 5 && uni != 9 ){
+                algRom += 'V';
+                while ( !(uni <= 5) ){ algRom += 'I'; uni--; }
+            } else if ( uni == 9) algRom += 'IX';
+        }
+
+        alert(algRom);
+
+    } else {
+        alert("O número ultrapassou 3999.");
+    } 
+
+    // **Sempre que o cod estiver repetitivo
+    // é sinal de que pode ser compactado: 
+
+    /* const converter_para_romano(n) {
+        let algRom = '';
+        let romanos = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'];
+        let decimal = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1,];
+
+        for(i = 0; i < decimal.length; i++) {
+            while (n % decimal[i] < n) {
+                algRom += romanos[i];
+                n -= decimal[i];
+            }
+        }
+
+        return algRom;
+    }*/
+    </script>
+</body>
+</html>

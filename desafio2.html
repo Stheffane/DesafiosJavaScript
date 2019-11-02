@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Desafio #2 - Jogo da Velha</title>
+</head>
+<body>
+
+    <script>
+        const jogo = [
+            ['X', 'O', 'X'],
+            ['O', 'X', 'O'],
+            ['X', 'O', 'O']
+        ];
+
+        /*for (i = 0; i <= 2; i++) {
+            for (x = 0; x <= 2; x++){
+                jogo.push(prompt("Insira a jogada: "));
+            }
+        }*/   
+
+        function condicoes(j) {
+            for (i = 0; i <= 2; i++) {
+                if(j[i].every(v => v === j[i][0] && v != '')) {
+                    return j[i][0];
+                } else if (j[0][i] == j[1][i] && j[0][i] == j[2][i] && j[0][i] != ''){
+                    return j[0][i];}
+            }
+
+            if (j[0][0] == j[1][1] && j[1][1] == j[2][2] && j[0][0] != ''){
+                return j[0][0]; 
+            } else if (j[0][2] == j[1][1] && j[1][1] == j[2][0] && j[0][2] != '') {
+                return j[0][2];
+            } else { return false; }
+        };
+        
+        let result = condicoes(jogo);
+        
+        if ( result != false ){
+            console.log(`O vencedor é o jogador que usou ${result}`);
+        } else{ console.log(`O jogo empatou`); }
+    </script>
+
+</body>
+</html>

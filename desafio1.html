@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Desafio #1 - Analisando um jogo de Pedra, papel e tesoura</title>
+</head>
+<body>
+    <script>
+    const partidas = prompt("Represente a sequência das partidas usando: \nS = tesoura\nR = pedra\nP = papel");
+
+    function quem_vence(x, y) {
+        if (x == 'R' && y == 'P' || x == 'P' && y == 'S' || x == 'S' && y == 'R' ){
+            return 2;
+        } 
+        else if (y == 'R' && x == 'P' || y == 'P' && x == 'S' || y == 'S' && x == 'R' ){
+            return 1;
+        } else return 0;
+    }
+
+    function qtde_partidas(p) {
+        let j1 = 0, j2 = 0;
+
+        for(i = 0; i < (p.length/2); i++){
+            const vencedor = quem_vence(partidas[i * 2], partidas[i * 2 + 1]);
+            if ( vencedor == 1) {
+                j1++;
+            } else if (vencedor == 2){ j2++; }
+        }
+
+        if(j1 > j2){
+            alert(`O jogador 1 ganhou a disputa por ${j1} a ${j2}`);
+        } else if (j2 > j1){
+           alert(`O jogador 2 ganhou a disputa por ${j2} a ${j1}`); 
+        } else alert(`O jogo empatou`);
+    }
+    
+    qtde_partidas(partidas);
+
+    </script>
+</body>
+</html>

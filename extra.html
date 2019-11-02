@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jogo - Pedra, papel, tesoura</title>
+</head>
+<body>
+   <script>
+       var escolha, compt, n = 0;
+                            
+       while(n < 3) {
+           escolha = prompt("Faça a sua escolha: \n1 - Pedra \n2 - Papel \n3 - Tesoura");
+
+           if (escolha > 3 || escolha == 0){
+               alert("ESCOLHA INVÁLIDA");
+               break;
+           }
+           
+           compt = Math.floor(Math.random() * 3) + 1;
+                                 
+           if (escolha == compt){
+               alert("valor de escolha do PC: " + compt + "\nEmpate!!!");
+           }
+           else if (escolha == 1 && compt == 2 || escolha == 2 && compt == 3 || escolha == 3 && compt == 1 ){
+               alert("valor de escolha do PC: " + compt);
+               alert("VOCÊ PERDEU!!");
+           }
+           else {
+               alert("valor de escolha do PC: " + compt);
+               alert("VOCÊ GANHOU!!")
+           }
+           n++;
+        }       
+    </script>
+</body>
+</html>
